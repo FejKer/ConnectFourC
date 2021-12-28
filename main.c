@@ -20,8 +20,8 @@ int min = 0;
 //}
 
 void printField(char array[6][7], char* name1, char* name2, int round, int wrong){
-    system("clear");
-    system("cls");
+//    system("clear");
+//    system("cls");
     printf("Tura gracza: ");
     if(round % 2 == 1) {
         printf("%s\n", name1);
@@ -95,6 +95,21 @@ int main() {
         } else {
             wrong = 1;
             round--;
+        }
+
+        if(checkDraw(array)){
+            printf("Gra zakonczona remisem.\n");
+        }
+        if(checkWin(array, round)){
+            printf("Gra zakoczona.\n");
+            printf("Wygrywa ");                     //sprawdzenie zakonczenia gry
+            if(round % 2 == 1){
+                printf("%s!\n", name1);
+            } else {
+                printf("%s!\n", name2);
+            }
+            sleep(5);
+            break;
         }
         round++;
     }
