@@ -7,6 +7,8 @@ void empty_stdin (void) //funkcja oczyszczajaca bufor w przypadku podania zmienn
 }
 
 int printMenuInGame(char array[6][7], int column, int round, int undo){
+    system("clear");
+    system("cls");
     int choice;
     printf("\n");
     printf("1. Powrot do gry\n");

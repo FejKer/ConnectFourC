@@ -26,6 +26,7 @@ int min = 0;
 int main() {
     system("cls");
     system("clear");
+    char input[255];
     int wrongCommand = 0;
     int wrong = 0;
     int round = 1;
@@ -42,11 +43,12 @@ int main() {
         }
     }
     printMenu();
-    
+    empty_stdin();
     printf("Podaj imie gracza 1.\n");
-    scanf("%s", name1);
+    scanf("%[^\n]s", name1);
+    empty_stdin();
     printf("Podaj imie gracza 2.\n");
-    scanf("%s", name2);
+    scanf("%[^\n]s", name2);
 
     int undo = 0;
     int failedUndo = 0;
@@ -75,6 +77,7 @@ int main() {
         }
         if(column > 7 || column < 1){
             wrongCommand = 1;
+            empty_stdin();
             continue;
         }
         if(checkColumn(array, column)){
