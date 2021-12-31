@@ -79,7 +79,7 @@ int main() {
         }
         if(checkColumn(array, column)){
             if(round % 2 == 1){
-                insertCoin(array, column, 'c');
+                insertCoin(array, column, 'c');         //wrzucenie zetonu
             } else {
                 insertCoin(array, column, 'z');
             }

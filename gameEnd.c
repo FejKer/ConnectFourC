@@ -11,7 +11,7 @@ int checkDraw(char array[6][7]){
 
 int checkWin(char array[6][7], int round){
     if(checkWinHorizontal(array, round)){
-        printf("checkWinHorizontal\n");
+        printf("checkWinHorizontal\n");     //debug printf
         sleep(2);
         return 1;
     }
@@ -33,7 +33,7 @@ int checkWin(char array[6][7], int round){
     return 0;
 }
 
-int checkWinHorizontal(char array[6][7], int round){
+int checkWinHorizontal(char array[6][7], int round){        //sprawdzenie wygranej poziomo
     int length = 0;
     int seek;
     if(round % 2 == 1){
@@ -55,7 +55,7 @@ int checkWinHorizontal(char array[6][7], int round){
     }
     return 0;
 }
-int checkWinVertical(char array[6][7], int round){
+int checkWinVertical(char array[6][7], int round){          //sprawdzenie wygranej pionowo
     int length = 0;
     int seek;
     if(round % 2 == 1){
@@ -77,7 +77,7 @@ int checkWinVertical(char array[6][7], int round){
     }
     return 0;
 }
-int checkWinDiagonallyLeft(char array[6][7], int round){
+int checkWinDiagonallyLeft(char array[6][7], int round){        //sprawdzenie wygranej ukos "\"
     int length = 0;
     int seek;
     if(round % 2 == 1){
@@ -176,7 +176,7 @@ int checkWinDiagonallyLeft(char array[6][7], int round){
 
     return 0;
 }
-int checkWinDiagonallyRight(char array[6][7], int round){
+int checkWinDiagonallyRight(char array[6][7], int round){       //sprawdzenie wygranej ukos "/"
     int length = 0;
 
     return 0;
