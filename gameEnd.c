@@ -11,23 +11,15 @@ int checkDraw(char array[6][7]){
 
 int checkWin(char array[6][7], int round){
     if(checkWinHorizontal(array, round)){
-        printf("checkWinHorizontal\n");     //debug printf
-        sleep(2);
         return 1;
     }
     if(checkWinVertical(array, round)){
-        printf("checkWinVertical\n");
-        sleep(2);
         return 1;
     }
     if(checkWinDiagonallyLeft(array, round)){
-        printf("checkWinDiagonallyLeft\n");
-        sleep(2);
         return 1;
     }
     if(checkWinDiagonallyRight(array, round)){
-        printf("checkWinDiagonallyRight\n");
-        sleep(2);
         return 1;
     }
     return 0;
@@ -63,8 +55,8 @@ int checkWinVertical(char array[6][7], int round){          //sprawdzenie wygran
     } else {
         seek = 122;
     }
-    for(int i = 0; i < 6; i++){
-        for(int j = 0; j < 7; j++){
+    for(int i = 0; i < 7; i++){
+        for(int j = 0; j < 6; j++){
             if(array[j][i] == seek){
                 length++;
             } else {
@@ -145,7 +137,7 @@ int checkWinDiagonallyLeft(char array[6][7], int round){        //sprawdzenie wy
     }
     length = 0;
 
-    for(int i = 0; i < 6;){
+    for(int i = 0; i < 5;){
         for(int j = 2; j <= 6; j++){
             if(array[i][j] == seek){
                 length++;
@@ -160,7 +152,7 @@ int checkWinDiagonallyLeft(char array[6][7], int round){        //sprawdzenie wy
     }
     length = 0;
 
-    for(int i = 0; i < 6;){
+    for(int i = 0; i < 4;){
         for(int j = 3; j <= 6; j++){
             if(array[i][j] == seek){
                 length++;
@@ -178,6 +170,100 @@ int checkWinDiagonallyLeft(char array[6][7], int round){        //sprawdzenie wy
 }
 int checkWinDiagonallyRight(char array[6][7], int round){       //sprawdzenie wygranej ukos "/"
     int length = 0;
+    int seek;
+    if(round % 2 == 1){
+        seek = 99;
+    } else {
+        seek = 122;
+    }
+    for(int i = 0; i < 4;){
+        for(int j = 3; j >= 0; j--){
+            if(array[i][j] == seek){
+                length++;
+            } else {
+                length = 0;
+            }
+            if(length > 3){
+                return 1;
+            }
+            i++;
+        }
+    }
+    length = 0;
+
+    for(int i = 0; i < 5;){
+        for(int j = 4; j >= 0; j--){
+            if(array[i][j] == seek){
+                length++;
+            } else {
+                length = 0;
+            }
+            if(length > 3){
+                return 1;
+            }
+            i++;
+        }
+    }
+    length = 0;
+
+    for(int i = 0; i < 6;) {
+        for(int j = 5; j >= 0; j--){
+            if(array[i][j] == seek){
+                length++;
+            } else {
+                length = 0;
+            }
+            if(length > 3){
+                return 1;
+            }
+            i++;
+        }
+    }
+    length = 0;
+
+    for(int i = 0; i < 6;){
+        for(int j = 6; j >= 0; j--){
+            if(array[i][j] == seek){
+                length++;
+            } else {
+                length = 0;
+            }
+            if(length > 3){
+                return 1;
+            }
+            i++;
+        }
+    }
+    length = 0;
+
+    for(int i = 1; i < 6;){
+        for(int j = 6; j >= 0; j--){
+            if(array[i][j] == seek){
+                length++;
+            } else {
+                length = 0;
+            }
+            if(length > 3){
+                return 1;
+            }
+            i++;
+        }
+    }
+    length = 0;
+
+    for(int i = 2; i < 6;){
+        for(int j = 0; j >= 0; j--){
+            if(array[i][j] == seek){
+                length++;
+            } else {
+                length = 0;
+            }
+            if(length > 3){
+                return 1;
+            }
+            i++;
+        }
+    }
 
     return 0;
 }
