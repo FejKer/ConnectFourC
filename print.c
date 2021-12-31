@@ -1,3 +1,11 @@
+void empty_stdin (void) //funkcja oczyszczajaca bufor w przypadku podania zmiennej innej niz int
+{
+    int c = getchar();
+
+    while (c != '\n')
+        c = getchar();
+}
+
 int printMenuInGame(char array[6][7], int column, int round, int undo){
     int choice;
     printf("\n");
@@ -9,7 +17,7 @@ int printMenuInGame(char array[6][7], int column, int round, int undo){
         case 1: return 0; break;
         case 2: undoMove(array, column, round, undo); return 1; break;                          //do zrobienia listy
         case 3: return 2; break;
-        default: system("clear"); system("cls"); printf("Podano bledna komende.\n"); printMenuInGame(array, column, round, undo);
+        default: system("clear"); system("cls"); printf("Podano bledna komende.\n"); empty_stdin(); printMenuInGame(array, column, round, undo);
     }
 }
 
@@ -23,7 +31,7 @@ void printMenu(){
         case 1: return;
         case 2: break;                          //do zrobienia listy
         case 3: break;
-        default: system("clear"); system("cls"); printf("Podano bledna komende.\n"); printMenu();
+        default: system("clear"); system("cls"); printf("Podano bledna komende.\n"); empty_stdin(); printMenu();
     }
 }
 
