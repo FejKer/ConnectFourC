@@ -36,7 +36,7 @@ void printMenu(){
     }
 }
 
-void printField(char array[6][7], char* name1, char* name2, int round, int wrong, int wrongCommand, int failedUndo){
+void printField(char array[6][7], char* name1, char* name2, int round, int wrong, int wrongCommand, int failedUndo, int min, int sec){
     system("clear");
     printf("Tura gracza: ");
     if(round % 2 == 1) {

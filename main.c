@@ -13,16 +13,20 @@ int sec = 0;
 int min = 0;
 
 void *timer(void *threadid){
-    sleep(1);
-    sec++;
-    if(sec % 60 == 0){
-        sec = 0;
-        min++;
+    while(1){
+        sleep(1);
+        sec++;
+        if(sec % 60 == 0){
+            sec = 0;
+            min++;
+        }
     }
 }
 
 
 int main() {
+    pthread_t thread_id; 
+    pthread_create(&thread_id, NULL, timer, NULL);
     system("clear");
     char input[255];
     int wrongCommand = 0;
@@ -51,7 +55,7 @@ int main() {
     int undo = 0;
     int failedUndo = 0;
     while(1){
-        printField(array, name1, name2, round, wrong, wrongCommand, failedUndo);
+        printField(array, name1, name2, round, wrong, wrongCommand, failedUndo, min, sec);
         wrong = 0;
         wrongCommand = 0;
         printf("\n");
@@ -95,7 +99,7 @@ int main() {
             printf("Gra zakonczona remisem.\n");
         }
         if(checkWin(array, round)){
-            printField(array, name1, name2, round, wrong, wrongCommand, failedUndo);
+            printField(array, name1, name2, round, wrong, wrongCommand, failedUndo, min, sec);
             printf("\n");
             printf("Gra zakonczona.\n");
             printf("Wygrywa ");                     //sprawdzenie zakonczenia gry
@@ -109,14 +113,6 @@ int main() {
         }
         round++;
     }
-
-
-
-
-    pthread_t thread_id; 
-    pthread_create(&thread_id, NULL, timer, NULL);          //rozpoczecie watku z timerem do zrobienia
-
-
 
     return 0;
 }
