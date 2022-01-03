@@ -25,7 +25,6 @@ int min = 0;
 
 int main() {
     system("cls");
-    system("clear");
     char input[255];
     int wrongCommand = 0;
     int wrong = 0;
