@@ -7,7 +7,7 @@ void empty_stdin (void) //funkcja oczyszczajaca bufor w przypadku podania zmienn
 }
 
 int printMenuInGame(char array[6][7], int column, int round, int undo){
-    system("cls");
+    system("clear");
     int choice;
     printf("\n");
     printf("1. Powrot do gry\n");
@@ -37,7 +37,7 @@ void printMenu(){
 }
 
 void printField(char array[6][7], char* name1, char* name2, int round, int wrong, int wrongCommand, int failedUndo){
-    system("cls");
+    system("clear");
     printf("Tura gracza: ");
     if(round % 2 == 1) {
         printf("%s\n", name1);
@@ -45,6 +45,7 @@ void printField(char array[6][7], char* name1, char* name2, int round, int wrong
         printf("%s\n", name2);
     }
     printf("Tura numer: %d\n", round);
+    printf("%d:%d", min, sec);
 
 
     for(int i = 0; i < 6; i++){

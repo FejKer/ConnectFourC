@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <time.h>
-//#include <pthread.h>
+#include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,19 +12,18 @@
 int sec = 0;
 int min = 0;
 
-//void *timer(void *threadid){
-//    printField();
-//    sleep(1);
-//    sec++;
-//    if(sec % 60 == 0){
-//        sec = 0;
-//        min++;
-//    }
-//}
+void *timer(void *threadid){
+    sleep(1);
+    sec++;
+    if(sec % 60 == 0){
+        sec = 0;
+        min++;
+    }
+}
 
 
 int main() {
-    system("cls");
+    system("clear");
     char input[255];
     int wrongCommand = 0;
     int wrong = 0;
@@ -114,8 +113,8 @@ int main() {
 
 
 
-    // pthread_t thread_id; 
-    // pthread_create(&thread_id, NULL, timer, NULL);          //rozpoczecie watku z timerem do zrobienia
+    pthread_t thread_id; 
+    pthread_create(&thread_id, NULL, timer, NULL);          //rozpoczecie watku z timerem do zrobienia
 
 
 
