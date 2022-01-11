@@ -9,11 +9,17 @@
 #include "undoMove.c"
 #include "print.c"
 
+
 int sec = 0;
 int min = 0;
+int paused;
+int blank = 50;             //znak pola pustego
 
 void *timer(void *threadid){
     while(1){
+        if(paused) {
+            continue;
+        }
         sleep(1);
         sec++;
         if(sec % 60 == 0){
@@ -25,7 +31,8 @@ void *timer(void *threadid){
 
 
 int main() {
-    pthread_t thread_id; 
+    paused = 1;     //pauza timera
+    pthread_t thread_id, print_thread_id; 
     pthread_create(&thread_id, NULL, timer, NULL);
     system("clear");
     char input[255];
@@ -33,15 +40,15 @@ int main() {
     int wrong = 0;
     int round = 1;
     int column = 0;
+    int backFromMenu = 0;
     char name1[255];
     char name2[255];
-//    int sec = 0, min = 0;                     //timer
     FILE *fptr;
     fptr = fopen("data.bin", "ab+");            //plik z danymi o graczach i wynikach
     char array[6][7];                           //tablica charow, zeby byl czytelnieszy output
     for (int i = 0; i < 6; i++){
         for(int j = 0; j < 7; j++){             //zerowanie tablicy
-            array[i][j] = 5;
+            array[i][j] = blank;
         }
     }
     printMenu();
@@ -54,7 +61,10 @@ int main() {
 
     int undo = 0;
     int failedUndo = 0;
+    pthread_create(&thread_id, NULL, timer, NULL);
     while(1){
+        backFromMenu = 0;
+        paused = 0;
         printField(array, name1, name2, round, wrong, wrongCommand, failedUndo, min, sec);
         wrong = 0;
         wrongCommand = 0;
@@ -64,6 +74,7 @@ int main() {
         printf("Lub wpisz 0 aby wejsc do menu.\n");
         scanf("%d", &column);
         if(column == 0){
+            paused = 1;
             int ret = printMenuInGame(array, column, round, undo);
             if(ret == 1){
                 if(!undo){
@@ -76,9 +87,12 @@ int main() {
             } else if(ret == 2){
                 main();           //powrot do menu programu
             }
+            backFromMenu = 1;
         }
         if(column > 7 || column < 1){
-            wrongCommand = 1;
+            if(!backFromMenu){
+                wrongCommand = 1;
+            }
             empty_stdin();
             continue;
         }

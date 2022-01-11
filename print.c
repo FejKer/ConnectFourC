@@ -1,3 +1,5 @@
+extern int blank;
+
 void empty_stdin (void) //funkcja oczyszczajaca bufor w przypadku podania zmiennej innej niz int
 {
     int c = getchar();
@@ -45,7 +47,12 @@ void printField(char array[6][7], char* name1, char* name2, int round, int wrong
         printf("%s\n", name2);
     }
     printf("Tura numer: %d\n", round);
-    printf("%d:%d", min, sec);
+    if(sec < 10){
+        printf("%d:0%d\n", min, sec);
+    } else {
+        printf("%d:%d\n", min, sec);
+    }
+
 
 
     for(int i = 0; i < 6; i++){
