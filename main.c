@@ -29,10 +29,9 @@ void *timer(void *threadid){
     }
 }
 
-
 int main() {
     paused = 1;     //pauza timera
-    pthread_t thread_id, print_thread_id; 
+    pthread_t thread_id; 
     pthread_create(&thread_id, NULL, timer, NULL);
     system("clear");
     char input[255];
